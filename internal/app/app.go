@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/xduck7/web-service/internal/controller"
+	"github.com/xduck7/web-service/internal/middleware"
 	"github.com/xduck7/web-service/internal/service"
 	"net/http"
 	"strconv"
@@ -15,7 +16,11 @@ var (
 )
 
 func Run() {
-	server := gin.Default()
+
+	middleware.SetupLogOutput()
+
+	server := gin.New()
+	server.Use(gin.Recovery(), middleware.Logger(), middleware.BasicAuth())
 
 	server.GET("/health", func(ctx *gin.Context) {
 		ctx.JSON(200, gin.H{
