@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{.title}}</title>
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+
+<body class="container">
+    <div class="album py-4 bg-light">
+        <div class="container">
+            <div class="row">
+                <!-- Loop over the list of inventions -->
+                {{range .inventions}}
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-body">
+                            <!-- Подставляем заголовок, дату и описание каждого изобретения -->
+                            <h4>{{.ID}} {{.Title}}</h4>
+                            <p>{{.Date}}</p>
+                            <p>{{.Description}}</p>
+                            <p class="card-text">
+                                <!-- Выводим информацию об изобретателе -->
+                            <p>Inventor: {{.Inventor.FirstName}} {{.Inventor.LastName}} ({{.Inventor.Age}} years old)</p>
+                            <p>Email: {{.Inventor.Email}}</p>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {{end}}
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .card {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05) rotateY(5deg);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            border-color: #00ff00;
+            outline: 2px solid #00ff00; /* Добавляем зеленую подсветку */
+        }
+    </style>
+
+    <script>
+        // Добавьте этот скрипт в вашу страницу HTML, чтобы обработать события при наведении
+        // Здесь можно добавить дополнительные действия при наведении, если нужно
+        const cards = document.querySelectorAll('.card');
+
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'scale(1.05) rotateY(5deg)';
+                card.style.boxShadow = '0 0 20px rgba(0, 0, 0, 0.2)';
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'scale(1) rotateY(0deg)';
+                card.style.boxShadow = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
