@@ -6,6 +6,7 @@ import (
 	"github.com/xduck7/web-service/internal/entity"
 	"github.com/xduck7/web-service/internal/service"
 	"github.com/xduck7/web-service/internal/validators"
+	"net/http"
 )
 
 var validate *validator.Validate
@@ -14,6 +15,7 @@ type InventionController interface {
 	Add(ctx *gin.Context) error
 	GetAll() ([]entity.Invention, error)
 	GetById(idx int) (entity.Invention, error)
+	ShowAll(ctx *gin.Context)
 }
 
 type controller struct {
@@ -48,4 +50,13 @@ func (c *controller) GetAll() ([]entity.Invention, error) {
 
 func (c *controller) GetById(idx int) (entity.Invention, error) {
 	return c.service.GetById(idx)
+}
+
+func (c *controller) ShowAll(ctx *gin.Context) {
+	inventions, _ := c.service.GetAll()
+	data := gin.H{
+		"title":      "Inventions page",
+		"inventions": inventions,
+	}
+	ctx.HTML(http.StatusOK, "index.html", data)
 }

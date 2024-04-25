@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{.title}}</title>
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+
+<body class="container">
+    <div class="album py-4 bg-light">
+        <div class="container">
+            <div class="row">
+                <!-- Loop over the list of inventions -->
+                {{range .inventions}}
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-body">
+                            <!-- Подставляем заголовок, дату и описание каждого изобретения -->
+                            <h4>{{.Title}}</h4>
+                            <p>{{.Date}}</p>
+                            <p>{{.Description}}</p>
+                            <p class="card-text">
+                                <!-- Выводим информацию об изобретателе -->
+                            <p>Inventor: {{.Inventor.FirstName}} {{.Inventor.LastName}} ({{.Inventor.Age}} years old)</p>
+                            <p>Email: {{.Inventor.Email}}</p>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {{end}}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
