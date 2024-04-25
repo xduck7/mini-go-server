@@ -5,6 +5,7 @@ import (
 	"github.com/go-playground/validator/v10"
 	"github.com/xduck7/web-service/internal/entity"
 	"github.com/xduck7/web-service/internal/service"
+	"github.com/xduck7/web-service/internal/validators"
 )
 
 var validate *validator.Validate
@@ -21,7 +22,7 @@ type controller struct {
 
 func New(service service.InventionService) InventionController {
 	validate = validator.New()
-	validate.RegisterValidation("is-good", nil)
+	validate.RegisterValidation("is-good", validators.ValidateGoodTitle)
 	return &controller{
 		service: service,
 	}
@@ -33,10 +34,11 @@ func (c *controller) Add(ctx *gin.Context) error {
 	if err != nil {
 		return err
 	}
-	c.service.Add(invention)
+	err = validate.Struct(invention)
 	if err != nil {
 		return err
 	}
+	c.service.Add(invention)
 	return nil
 }
 
