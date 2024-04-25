@@ -29,11 +29,12 @@ func Run() {
 	})
 
 	server.POST("/invention", func(ctx *gin.Context) {
-		invList, err := inventionController.Save(ctx)
+		err := inventionController.Add(ctx)
 		if err != nil {
-			ctx.JSON(0, nil)
+			ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		} else {
+			ctx.JSON(http.StatusOK, gin.H{"error": "Data is valid"})
 		}
-		ctx.JSON(200, invList)
 	})
 
 	server.GET("/invention", func(ctx *gin.Context) {
