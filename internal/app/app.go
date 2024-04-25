@@ -30,7 +30,7 @@ func Run() {
 	server.Static("/css", templatesPath+"/css")
 	server.LoadHTMLGlob(templatesPath + "/*.html")
 
-	apiRoutes := server.Group("/api")
+	apiRoutes := server.Group("/api/v1")
 	{
 		apiRoutes.GET("/health", func(ctx *gin.Context) {
 			ctx.JSON(200, gin.H{
@@ -71,7 +71,7 @@ func Run() {
 		})
 	}
 
-	viewRoutes := server.Group("/view")
+	viewRoutes := server.Group("/view/v1")
 	{
 		viewRoutes.GET("/invention", inventionController.ShowAll)
 	}
