@@ -2,12 +2,16 @@ package controller
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/go-playground/validator/v10"
 	"github.com/xduck7/web-service/internal/entity"
 	"github.com/xduck7/web-service/internal/service"
+	"github.com/xduck7/web-service/internal/validators"
 )
 
+var validate *validator.Validate
+
 type InventionController interface {
-	Save(ctx *gin.Context) (entity.Invention, error)
+	Add(ctx *gin.Context) error
 	GetAll() ([]entity.Invention, error)
 	GetById(idx int) (entity.Invention, error)
 }
@@ -17,16 +21,25 @@ type controller struct {
 }
 
 func New(service service.InventionService) InventionController {
+	validate = validator.New()
+	validate.RegisterValidation("is_ok", validators.ValidateGoodTitle)
 	return &controller{
 		service: service,
 	}
 }
 
-func (c *controller) Save(ctx *gin.Context) (entity.Invention, error) {
+func (c *controller) Add(ctx *gin.Context) error {
 	var invention entity.Invention
-	ctx.BindJSON(&invention)
+	err := ctx.ShouldBindJSON(&invention)
+	if err != nil {
+		return err
+	}
+	err = validate.Struct(invention)
+	if err != nil {
+		return err
+	}
 	c.service.Add(invention)
-	return invention, nil
+	return nil
 }
 
 func (c *controller) GetAll() ([]entity.Invention, error) {
