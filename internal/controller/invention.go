@@ -22,7 +22,7 @@ type controller struct {
 
 func New(service service.InventionService) InventionController {
 	validate = validator.New()
-	validate.RegisterValidation("is-good", validators.ValidateGoodTitle)
+	validate.RegisterValidation("is_ok", validators.ValidateGoodTitle)
 	return &controller{
 		service: service,
 	}
