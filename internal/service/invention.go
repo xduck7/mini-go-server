@@ -1,7 +1,7 @@
 package service
 
 import (
-	"github.com/xduck7/web-service/internal/entity"
+	"github.com/xduck7/mini-go-server/internal/entity"
 	"strconv"
 )
 

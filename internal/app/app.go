@@ -3,9 +3,9 @@ package app
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"github.com/xduck7/web-service/internal/controller"
-	"github.com/xduck7/web-service/internal/middleware"
-	"github.com/xduck7/web-service/internal/service"
+	"github.com/xduck7/mini-go-server/internal/controller"
+	"github.com/xduck7/mini-go-server/internal/middleware"
+	"github.com/xduck7/mini-go-server/internal/service"
 	"net/http"
 	"os"
 	"path/filepath"

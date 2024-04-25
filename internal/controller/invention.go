@@ -3,9 +3,9 @@ package controller
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
-	"github.com/xduck7/web-service/internal/entity"
-	"github.com/xduck7/web-service/internal/service"
-	"github.com/xduck7/web-service/internal/validators"
+	"github.com/xduck7/mini-go-server/internal/entity"
+	"github.com/xduck7/mini-go-server/internal/service"
+	"github.com/xduck7/mini-go-server/internal/validators"
 	"net/http"
 )
 
