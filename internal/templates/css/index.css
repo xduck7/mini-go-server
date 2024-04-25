@@ -13,16 +13,16 @@ body {
 
 /* Стилизация карточек */
 .card {
-    background-color: #fff; /* Цвет фона */
-    border: 1px solid #ccc; /* Рамка */
-    border-radius: 5px; /* Скругление углов */
+    background-color: #ffffff; /* Цвет фона */
+    border: 2px solid #ccc; /* Рамка */
+    border-radius: 15px; /* Скругление углов */
     margin-bottom: 20px; /* Отступ снизу */
-    padding-left: 20px; /* Отступ слева внутри карточки */
+    padding-left: 25px; /* Отступ слева внутри карточки */
 }
 
 /* Тень для карточек */
 .shadow-sm {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Тень */
+    box-shadow: 0 10px 6px rgba(47, 47, 47, 0.1); /* Тень */
 }
 
 /* Стилизация заголовков */
