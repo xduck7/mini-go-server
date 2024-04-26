@@ -9,7 +9,7 @@ run:
 	$(GO_CMD) run $(APP_PATH)
 
 # Цель для сборки приложения
-build-bin:
+build:
 	$(GO_CMD) build -o ./build/app $(APP_PATH)
 
 build-exe:
