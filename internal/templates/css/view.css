@@ -1,0 +1,60 @@
+body {
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    background-color: rgb(34, 34, 34);
+    color: #fff;
+}
+
+button.menu {
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgb(74, 222, 128); /* Зеленый цвет фона для кнопок */
+    color: #fff; /* Белый цвет текста */
+    padding: 10px 20px; /* Внутренние отступы */
+    border: none;
+    cursor: pointer; /* Изменение курсора при наведении */
+}
+
+button.menu:hover {
+    background-color: rgb(60, 180, 101); /* Зеленый цвет фона при наведении на кнопку */
+}
+
+
+.album {
+    padding: 10vh 10vw;
+}
+
+.card {
+    background-color: #555;
+    color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* Создаем сетку с 3 карточками в ряду */
+.row {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    /* При уменьшении ширины экрана изменяем на 2 карточки в ряду */
+    .row {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
+
+@media screen and (max-width: 576px) {
+    /* При еще большем уменьшении ширины экрана изменяем на 1 карточку в ряду */
+    .row {
+        grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+    }
+}

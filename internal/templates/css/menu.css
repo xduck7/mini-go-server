@@ -1,0 +1,75 @@
+body {
+    background-color: rgb(34, 34, 34); /* Темно-серый цвет фона */
+    color: #fff; /* Белый цвет текста */
+    margin: 0; /* Убираем отступы */
+    padding: 0; /* Убираем внутренние отступы */
+    display: flex; /* Флекс-контейнер */
+    justify-content: center; /* Центрируем контент по горизонтали */
+    align-items: center; /* Центрируем контент по вертикали */
+    height: 100vh; /* Высота контейнера равна высоте видимой части окна браузера */
+    font-family: "Raleway", sans-serif;
+    font-size: 3vh;
+    font-weight: 300;
+    font-style: normal;
+}
+
+input[type="text"], input[type="email"], input[type="number"], textarea {
+    background-color: #555; /* Серый цвет фона для полей ввода */
+    color: #fff; /* Белый цвет текста */
+    border: 1px solid #777; /* Серая граница */
+    padding: 8px; /* Внутренние отступы */
+    margin-bottom: 10px; /* Отступ снизу */
+    width: 100%; /* Ширина поля равна 100% */
+    text-align: left;
+    font-family: "Raleway", sans-serif;
+    font-size: 3vh;
+    font-weight: 300;
+    font-style: normal;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="number"]:focus {
+    outline: none; /* Убираем фокусировку при клике */
+    border-color: rgb(74, 222, 128); /* Зеленый цвет границы при фокусировке */
+}
+
+.submit {
+    background-color: rgb(74, 222, 128); /* Зеленый цвет фона для кнопок */
+    color: #fff; /* Белый цвет текста */
+    border: none; /* Убираем границу */
+    padding: 10px 100px; /* Внутренние отступы */
+    cursor: pointer; /* Изменение курсора при наведении */
+    font-family: "Raleway", sans-serif;
+    font-size: 3vh;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.submit:hover {
+    background-color: rgb(60, 180, 101);
+}
+
+button.view-inventions {
+;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgb(74, 222, 128); /* Зеленый цвет фона для кнопок */
+    color: #fff; /* Белый цвет текста */
+    padding: 10px 20px; /* Внутренние отступы */
+    border: none;
+    cursor: pointer; /* Изменение курсора при наведении */
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+}
+
+button.view-inventions:hover {
+    background-color: rgb(60, 180, 101); /* Зеленый цвет фона при наведении на кнопку */
+}
+
+.subCon {
+    text-align: center;
+}
+
+

@@ -10,7 +10,7 @@ type Person struct {
 }
 
 type Invention struct {
-	ID          string    `json:"id" `
+	ID          string    `json:"id"`
 	Title       string    `json:"title" binding:"min=3" validate:"is_ok"`
 	Date        time.Time `json:"date"`
 	Description string    `json:"description" binding:"min=3,max=300"`

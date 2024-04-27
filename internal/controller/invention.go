@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
 	"github.com/xduck7/mini-go-server/internal/entity"
@@ -16,6 +17,7 @@ type InventionController interface {
 	GetAll() ([]entity.Invention, error)
 	GetById(idx int) (entity.Invention, error)
 	ShowAll(ctx *gin.Context)
+	ShowMenu(ctx *gin.Context)
 }
 
 type controller struct {
@@ -24,7 +26,10 @@ type controller struct {
 
 func New(service service.InventionService) InventionController {
 	validate = validator.New()
-	validate.RegisterValidation("is_ok", validators.ValidateGoodTitle)
+	if err := validate.RegisterValidation("is_ok", validators.ValidateGoodTitle); err != nil {
+		fmt.Println(err)
+		return nil
+	}
 	return &controller{
 		service: service,
 	}
@@ -40,7 +45,7 @@ func (c *controller) Add(ctx *gin.Context) error {
 	if err != nil {
 		return err
 	}
-	c.service.Add(invention)
+	_, _ = c.service.Add(invention)
 	return nil
 }
 
@@ -58,5 +63,12 @@ func (c *controller) ShowAll(ctx *gin.Context) {
 		"title":      "Inventions page",
 		"inventions": inventions,
 	}
-	ctx.HTML(http.StatusOK, "index.html", data)
+	ctx.HTML(http.StatusOK, "view.html", data)
+}
+
+func (c *controller) ShowMenu(ctx *gin.Context) {
+	data := gin.H{
+		"title": "Inventions Menu",
+	}
+	ctx.HTML(http.StatusOK, "menu.html", data)
 }
