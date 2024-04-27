@@ -91,7 +91,7 @@ pm.environment.set("randId", randId);
 
 ![alt text](https://i.imgur.com/bcm17mK.png)
 
-* ### /inventions - menu for displaying all items
+* ### /inventions - menu for displaying
 
 ![alt text](https://i.imgur.com/hp3oyVL.png)
 
