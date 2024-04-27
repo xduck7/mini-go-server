@@ -24,13 +24,13 @@
                     <div class="card mb-4 shadow-sm">
                         <div class="card-body">
                             <!-- Подставляем заголовок, дату и описание каждого изобретения -->
-                            <h4>{{.ID}} {{.Title}}</h4>
-                            <p>{{.Date}}</p>
-                            <p>{{.Description}}</p>
+                            <h4>{{.ID}} | {{.Title}}</h4>
+                            <p>Дата: {{.Date}}</p>
+                            <p>Описание: {{.Description}}</p>
                             <p class="card-text">
                                 <!-- Выводим информацию об изобретателе -->
-                            <p>Inventor: {{.Inventor.FirstName}} {{.Inventor.LastName}} ({{.Inventor.Age}} years old)</p>
-                            <p>Email: {{.Inventor.Email}}</p>
+                            <p>Изобрел: {{.Inventor.FirstName}} {{.Inventor.LastName}} ({{.Inventor.Age}} лет)</p>
+                            <p>Почта: {{.Inventor.Email}}</p>
                             </p>
                         </div>
                     </div>
