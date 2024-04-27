@@ -3,10 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>{{.title}}</title>
-    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/view.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
 </head>
 
+
+
 <body class="container">
+
+    <button class="menu" onclick="window.location.href='/view/menu'">Добавление изобретений</button>
+
     <div class="album py-4 bg-light">
         <div class="container">
             <div class="row">
@@ -40,8 +48,7 @@
         .card:hover {
             transform: scale(1.05) rotateY(5deg);
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-            border-color: #00ff00;
-            outline: 2px solid #00ff00; /* Добавляем зеленую подсветку */
+            outline: 2px solid rgb(74, 222, 128); /* Добавляем зеленую подсветку */
         }
     </style>
 
@@ -52,8 +59,8 @@
 
         cards.forEach(card => {
             card.addEventListener('mouseenter', () => {
-                card.style.transform = 'scale(1.05) rotateY(5deg)';
-                card.style.boxShadow = '0 0 20px rgba(0, 0, 0, 0.2)';
+                card.style.transform = 'scale(1.2) rotateY(10deg)';
+                card.style.boxShadow = '0 0 20px rgba(255, 255, 255, 0.5)';
             });
 
             card.addEventListener('mouseleave', () => {

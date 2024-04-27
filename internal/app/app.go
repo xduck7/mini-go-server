@@ -71,9 +71,10 @@ func Run() {
 		})
 	}
 
-	viewRoutes := server.Group("/view/v1")
+	viewRoutes := server.Group("/view")
 	{
-		viewRoutes.GET("/invention", inventionController.ShowAll)
+		viewRoutes.GET("/inventions", inventionController.ShowAll)
+		viewRoutes.GET("/menu", inventionController.ShowMenu)
 	}
 
 	port := os.Getenv("PORT")

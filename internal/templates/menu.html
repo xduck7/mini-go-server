@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.title}}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/menu.css">
+</head>
+<body>
+
+<button class="view-inventions" onclick="window.location.href='/view/inventions'">Посмотреть изобретения</button>
+
+
+
+<form class="form" id="form" action="/api/v1/invention" method="POST">
+    <h2>Информация о создателе</h2>
+    <input placeholder="Имя" type="text" id="firstname" name="firstname" required><br>
+
+    <input placeholder="Фамилия" type="text" id="lastname" name="lastname" required><br>
+
+    <input placeholder="Возраст" type="number" id="age" name="age" min="18" max="100" required><br>
+
+    <input placeholder="Почта" type="email" id="email" name="email" required><br><br>
+
+    <h2>Информация об изобретении</h2>
+
+    <input placeholder="Название изобретения" type="text" id="title" name="title" minlength="3" required><br>
+
+    <textarea placeholder="Описание" id="description" name="description" rows="4" cols="50" minlength="3" maxlength="300" required></textarea><br><br>
+    <div class="subCon">
+        <input class="submit" type="submit" value="Отправить">
+    </div>
+</form>
+
+<script>
+    document.getElementById("form").addEventListener("submit", function(event) {
+        event.preventDefault(); // Предотвращаем отправку формы
+
+
+        // Получение данных из формы
+        var firstname = document.getElementById("firstname").value;
+        var lastname = document.getElementById("lastname").value;
+        var age = parseInt(document.getElementById("age").value);
+        var email = document.getElementById("email").value;
+        var title = document.getElementById("title").value;
+        var description = document.getElementById("description").value;
+
+        // Формирование объекта JSON
+        var data = {
+            "id": generateID().toString(), // Функция для генерации ID
+            "title": title,
+            "date": getCurrentDate(),
+            "description": description,
+            "inventor": {
+                "firstname": firstname,
+                "lastname": lastname,
+                "age": age,
+                "email": email
+            }
+        };
+        console.log("Отправляемый JSON:", JSON.stringify(data));
+
+        function getCurrentDate() {
+            const now = new Date();
+            return now.toISOString();
+        }
+
+        function generateID() {
+            return Math.floor(Math.random() * (1000 - 1 + 1)) + 1;
+        }
+
+        // Отправка данных на сервер
+        fetch("/api/v1/invention", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Basic " + btoa("server:admin") // Добавляем Basic Auth заголовок
+            },
+            body: JSON.stringify(data)
+        }).then(response => {
+            if (response.ok) {
+                document.getElementById("form").reset();
+            } else {
+                alert("Произошла ошибка при отправке данных!");
+            }
+        }).catch(error => {
+            console.error("Ошибка:", error);
+            alert("Произошла ошибка при отправке данных!");
+        });
+    });
+
+</script>
+</body>
+</html>
