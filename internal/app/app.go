@@ -71,7 +71,7 @@ func Run() {
 		})
 	}
 
-	viewRoutes := server.Group("/view")
+	viewRoutes := server.Group("/")
 	{
 		viewRoutes.GET("/inventions", inventionController.ShowAll)
 		viewRoutes.GET("/menu", inventionController.ShowMenu)
