@@ -48,33 +48,52 @@ mingw32-make build-bin
 ---
 
 
-## Endpoints  for JSON
+## Endpoints
 #### [![](https://img.shields.io/badge/-GET-mediumgreen?style=flat&logo=GET&logoColor=white)]()  /api/v1/invention - return all objects
 #### [![](https://img.shields.io/badge/-GET-mediumgreen?style=flat&logo=GET&logoColor=white)]()  /api/v1/invention/:id - return object by ID
 #### [![](https://img.shields.io/badge/-POST-orange?style=flat&logo=GET&logoColor=white)]()  /api/v1/invention/ - add object
 
 ---
-## JSON Example
-Method [![](https://img.shields.io/badge/-POST-orange?style=flat&logo=GET&logoColor=white)]()
+## JSON Example with Postman
+ [![](https://img.shields.io/badge/-POST-orange?style=flat&logo=GET&logoColor=white)]() ```/api/v1/invention/```
+ 
+ Body
 ```
-    {
-        "id": "19",
-        "title": "Exclusive context-sensitive parallelism",
-        "date": "{{currentDate}}",
-        "description": "generate virtual architectures",
-        "inventor": {
-            "firstname":"Rachel",
-            "lastname":"Smith",
-            "age": 23,
-            "email":"rachel.smith@mail.com"
-        }
+{
+    "id": "{{randId}}",
+    "title": "Test",
+    "date": "{{currentDate}}",
+    "description": "Test",
+    "inventor": {
+        "firstname": "Test",
+        "lastname": "Test",
+        "age": 43,
+        "email": "test@mail.com"
     }
+}
 ```
-## Endpoints  for view
+Pre-request Script
+```
+let currentDate = new Date().toISOString();
+pm.environment.set("currentDate", currentDate);
 
-#### [![](https://img.shields.io/badge/-GET-mediumgreen?style=flat&logo=GET&logoColor=white)]()  /view/v1/invention - return all objects in HTML
+function generateID() {
+    return Math.floor(Math.random() * (1000)) + 1;
+}
 
-![alt text](https://i.imgur.com/kZoOCty.png)
+let randId = generateID().toString();
+pm.environment.set("randId", randId);
+
+```
+## View
+
+* ### /view/menu - menu for adding
+
+![alt text](https://i.imgur.com/bcm17mK.png)
+
+* ### /view/inventions - menu for displaying 
+
+![alt text](https://i.imgur.com/hp3oyVL.png)
 
 ## License
 [MIT license](https://choosealicense.com/licenses/mit/)
