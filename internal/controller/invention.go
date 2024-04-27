@@ -37,6 +37,7 @@ func New(service service.InventionService) InventionController {
 
 func (c *controller) Add(ctx *gin.Context) error {
 	var invention entity.Invention
+	invention.Date.Format("02-01-2006 15:04:05")
 	err := ctx.ShouldBindJSON(&invention)
 	if err != nil {
 		return err
