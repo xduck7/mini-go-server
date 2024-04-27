@@ -46,7 +46,10 @@ func (c *controller) Add(ctx *gin.Context) error {
 	if err != nil {
 		return err
 	}
-	_, _ = c.service.Add(invention)
+	_, err = c.service.Add(invention)
+	if err != nil {
+		return err
+	}
 	return nil
 }
 
