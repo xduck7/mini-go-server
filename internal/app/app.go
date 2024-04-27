@@ -76,7 +76,11 @@ func Run() {
 		viewRoutes.GET("/invention", inventionController.ShowAll)
 	}
 
-	err = server.Run(":8080")
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+	err = server.Run(":" + port)
 	if err != nil {
 		fmt.Println(err)
 	}
