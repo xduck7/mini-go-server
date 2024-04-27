@@ -87,11 +87,11 @@ pm.environment.set("randId", randId);
 ```
 ## View
 
-* ### /view/menu - menu for adding
+* ### /menu - menu for adding
 
 ![alt text](https://i.imgur.com/bcm17mK.png)
 
-* ### /view/inventions - menu for displaying 
+* ### /inventions - menu for displaying 
 
 ![alt text](https://i.imgur.com/hp3oyVL.png)
 
