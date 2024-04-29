@@ -35,6 +35,9 @@ func New(service service.InventionService) InventionController {
 	}
 }
 
+// @Summary Controller
+// @Router /api/v1/invention
+
 func (c *controller) Add(ctx *gin.Context) error {
 	var invention entity.Invention
 	invention.Date.Format("02-01-2006 15:04:05")

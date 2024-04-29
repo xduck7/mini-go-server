@@ -3,6 +3,8 @@ package app
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 	"github.com/xduck7/mini-go-server/internal/controller"
 	"github.com/xduck7/mini-go-server/internal/middleware"
 	"github.com/xduck7/mini-go-server/internal/service"
@@ -17,7 +19,7 @@ var (
 	inventionController = controller.New(inventionService)
 )
 
-func Run() {
+func Run(port string) {
 	middleware.SetupLogOutput()
 
 	server := gin.New()
@@ -75,12 +77,9 @@ func Run() {
 	{
 		viewRoutes.GET("/inventions", inventionController.ShowAll)
 		viewRoutes.GET("/menu", inventionController.ShowMenu)
+		viewRoutes.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	}
 
-	port := os.Getenv("PORT")
-	if port == "" {
-		port = "8080"
-	}
 	err = server.Run(":" + port)
 	if err != nil {
 		fmt.Println(err)
