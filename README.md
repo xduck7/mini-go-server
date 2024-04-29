@@ -44,6 +44,7 @@ mingw32-make build-bin
 
 
 * [Gin](https://github.com/gin-gonic/gin/) - Web Framework
+* [Swagger](https://github.com/swaggo/swag) - Swagger UI
 
 ---
 
@@ -92,11 +93,13 @@ pm.environment.set("randId", randId);
 ![alt text](https://i.imgur.com/bcm17mK.png)
 
 
-* ### `````/inventions````` - menu for displaying 
-=======
-
+* ### `````/inventions````` - menu for displaying
 
 ![alt text](https://i.imgur.com/hp3oyVL.png)
+
+* ### `````/swagger/index.html````` - Swagger UI
+
+
 
 ## License
 [MIT license](https://choosealicense.com/licenses/mit/)
