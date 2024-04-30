@@ -1,0 +1,31 @@
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /css/*filepath            --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (4 handlers)
+[GIN-debug] HEAD   /css/*filepath            --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (4 handlers)
+[GIN-debug] Loaded HTML Templates (3): 
+	- 
+	- menu.html
+	- view.html
+
+[GIN-debug] GET    /api/v1/health            --> github.com/xduck7/mini-go-server/internal/app.Run.func1 (4 handlers)
+[GIN-debug] POST   /api/v1/invention         --> github.com/xduck7/mini-go-server/internal/app.Run.func2 (4 handlers)
+[GIN-debug] GET    /api/v1/invention         --> github.com/xduck7/mini-go-server/internal/app.Run.func3 (4 handlers)
+[GIN-debug] GET    /api/v1/invention/:id     --> github.com/xduck7/mini-go-server/internal/app.Run.func4 (4 handlers)
+[GIN-debug] GET    /inventions               --> github.com/xduck7/mini-go-server/internal/controller.InventionController.ShowAll-fm (4 handlers)
+[GIN-debug] GET    /menu                     --> github.com/xduck7/mini-go-server/internal/controller.InventionController.ShowMenu-fm (4 handlers)
+[GIN-debug] GET    /swagger/*any             --> github.com/swaggo/gin-swagger.CustomWrapHandler.func1 (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :8080
+[0;30m[47m::1[0m [40m[22:10:02][0m [0;30m[42mGET[0m [0;30m[47m/swagger/index.html[0m [0;30m[42m200[0m [0;30m[47m0s[0m
+[0;30m[47m::1[0m [40m[22:10:02][0m [0;30m[42mGET[0m [0;30m[47m/swagger/swagger-ui.css[0m [0;30m[42m200[0m [0;30m[47m557.5µs[0m
+[0;30m[47m::1[0m [40m[22:10:02][0m [0;30m[42mGET[0m [0;30m[47m/swagger/swagger-ui-standalone-preset.js[0m [0;30m[42m200[0m [0;30m[47m1.0635ms[0m
+[0;30m[47m::1[0m [40m[22:10:02][0m [0;30m[42mGET[0m [0;30m[47m/swagger/swagger-ui-bundle.js[0m [0;30m[42m200[0m [0;30m[47m4.716ms[0m
+[0;30m[47m::1[0m [40m[22:10:02][0m [0;30m[42mGET[0m [0;30m[47m/swagger/doc.json[0m [0;30m[42m200[0m [0;30m[47m1.1187ms[0m
+[0;30m[47m::1[0m [40m[22:10:02][0m [0;30m[42mGET[0m [0;30m[47m/swagger/favicon-32x32.png[0m [0;30m[42m200[0m [0;30m[47m0s[0m
+[0;30m[47m::1[0m [40m[22:10:16][0m [0;30m[48;2;255;165;0mPOST[0m [0;30m[47m/api/v1/invention[0m [0;30m[42m200[0m [0;30m[47m0s[0m
+[0;30m[47m::1[0m [40m[22:10:25][0m [0;30m[42mGET[0m [0;30m[47m/menu[0m [0;30m[42m200[0m [0;30m[47m815.8µs[0m
+[0;30m[47m::1[0m [40m[22:10:27][0m [0;30m[42mGET[0m [0;30m[47m/inventions[0m [0;30m[42m200[0m [0;30m[47m1.5653ms[0m
+[0;30m[47m::1[0m [40m[22:10:27][0m [0;30m[42mGET[0m [0;30m[47m/css/view.css[0m [0;30m[43m304[0m [0;30m[47m964µs[0m

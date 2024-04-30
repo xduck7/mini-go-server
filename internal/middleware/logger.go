@@ -22,7 +22,7 @@ const (
 )
 
 func SetupLogOutput() {
-	f, _ := os.Create("output.log")
+	f, _ := os.Create("./log/output.log")
 	gin.DefaultWriter = io.MultiWriter(f, os.Stdout)
 }
 

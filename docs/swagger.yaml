@@ -1,0 +1,106 @@
+definitions:
+  entity.Invention:
+    properties:
+      date:
+        example: "2024-04-30T00:00:00Z"
+        type: string
+      description:
+        example: This is an amazing invention that will revolutionize the world.
+        maxLength: 300
+        minLength: 3
+        type: string
+      id:
+        example: "123"
+        type: string
+      inventor:
+        $ref: '#/definitions/entity.Person'
+      title:
+        example: Amazing Invention
+        minLength: 3
+        type: string
+    required:
+    - inventor
+    type: object
+  entity.Person:
+    properties:
+      age:
+        example: 30
+        maximum: 100
+        minimum: 18
+        type: integer
+      email:
+        example: john.doe@example.com
+        type: string
+      firstname:
+        example: John
+        type: string
+      lastname:
+        example: Doe
+        type: string
+    required:
+    - email
+    - firstname
+    - lastname
+    type: object
+info:
+  contact: {}
+  description: API Server for my github project
+  title: Mini-Go-Server
+  version: 0.7.3
+paths:
+  /invention:
+    get:
+      description: Get all inventions
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/entity.Invention'
+            type: array
+      summary: Get all inventions
+      tags:
+      - api/v1
+    post:
+      consumes:
+      - application/json
+      description: Add a new invention with the input payload
+      parameters:
+      - description: Invention entity
+        in: body
+        name: invention
+        required: true
+        schema:
+          $ref: '#/definitions/entity.Invention'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Data is valid
+          schema:
+            type: string
+      summary: Add a new invention
+      tags:
+      - api/v1
+  /invention/{id}:
+    get:
+      description: Get an invention by id
+      parameters:
+      - description: Invention ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/entity.Invention'
+      summary: Get an invention by id
+      tags:
+      - api/v1
+swagger: "2.0"
