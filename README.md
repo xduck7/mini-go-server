@@ -19,7 +19,7 @@ go install github.com/swaggo/swag/cmd/swag@latest
 ```
 
 ```bash
-swag init -g cmd/app/main.go
+swag init
 ```
 
 ```bash
