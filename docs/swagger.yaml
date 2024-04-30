@@ -13,7 +13,7 @@ definitions:
         example: "123"
         type: string
       inventor:
-        $ref: '#/definitions/entity.Person'
+        $ref: '#/definitions/entity.Inventor'
       title:
         example: Amazing Invention
         minLength: 3
@@ -21,7 +21,7 @@ definitions:
     required:
     - inventor
     type: object
-  entity.Person:
+  entity.Inventor:
     properties:
       age:
         example: 30
@@ -34,6 +34,8 @@ definitions:
       firstname:
         example: John
         type: string
+      id:
+        type: integer
       lastname:
         example: Doe
         type: string
@@ -46,7 +48,7 @@ info:
   contact: {}
   description: API Server for my github project
   title: Mini-Go-Server
-  version: 0.7.3
+  version: 0.8.2
 paths:
   /invention:
     get:
@@ -60,7 +62,7 @@ paths:
             items:
               $ref: '#/definitions/entity.Invention'
             type: array
-      summary: Get all inventions
+      summary: Get
       tags:
       - api/v1
     post:
@@ -81,10 +83,30 @@ paths:
           description: Data is valid
           schema:
             type: string
-      summary: Add a new invention
+      summary: Add
       tags:
       - api/v1
   /invention/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete an existing invention by ID
+      parameters:
+      - description: ID of the invention to delete
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Invention deleted successfully
+          schema:
+            type: string
+      summary: Delete
+      tags:
+      - api/v1
     get:
       description: Get an invention by id
       parameters:
@@ -100,7 +122,33 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/entity.Invention'
-      summary: Get an invention by id
+      summary: Get
+      tags:
+      - api/v1
+    put:
+      consumes:
+      - application/json
+      description: Update an existing invention with the input payload
+      parameters:
+      - description: ID of the invention to update
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Invention entity
+        in: body
+        name: invention
+        required: true
+        schema:
+          $ref: '#/definitions/entity.Invention'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Invention updated successfully
+          schema:
+            type: string
+      summary: Update
       tags:
       - api/v1
 swagger: "2.0"

@@ -24,7 +24,7 @@ const docTemplate = `{
                 "tags": [
                     "api/v1"
                 ],
-                "summary": "Get all inventions",
+                "summary": "Get",
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -48,7 +48,7 @@ const docTemplate = `{
                 "tags": [
                     "api/v1"
                 ],
-                "summary": "Add a new invention",
+                "summary": "Add",
                 "parameters": [
                     {
                         "description": "Invention entity",
@@ -79,7 +79,7 @@ const docTemplate = `{
                 "tags": [
                     "api/v1"
                 ],
-                "summary": "Get an invention by id",
+                "summary": "Get",
                 "parameters": [
                     {
                         "type": "integer",
@@ -94,6 +94,75 @@ const docTemplate = `{
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/entity.Invention"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Update an existing invention with the input payload",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "api/v1"
+                ],
+                "summary": "Update",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID of the invention to update",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Invention entity",
+                        "name": "invention",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/entity.Invention"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Invention updated successfully",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete an existing invention by ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "api/v1"
+                ],
+                "summary": "Delete",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID of the invention to delete",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Invention deleted successfully",
+                        "schema": {
+                            "type": "string"
                         }
                     }
                 }
@@ -122,7 +191,7 @@ const docTemplate = `{
                     "example": "123"
                 },
                 "inventor": {
-                    "$ref": "#/definitions/entity.Person"
+                    "$ref": "#/definitions/entity.Inventor"
                 },
                 "title": {
                     "type": "string",
@@ -131,7 +200,7 @@ const docTemplate = `{
                 }
             }
         },
-        "entity.Person": {
+        "entity.Inventor": {
             "type": "object",
             "required": [
                 "email",
@@ -153,6 +222,9 @@ const docTemplate = `{
                     "type": "string",
                     "example": "John"
                 },
+                "id": {
+                    "type": "integer"
+                },
                 "lastname": {
                     "type": "string",
                     "example": "Doe"
@@ -164,7 +236,7 @@ const docTemplate = `{
 
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
-	Version:          "0.7.3",
+	Version:          "0.8.2",
 	Host:             "",
 	BasePath:         "",
 	Schemes:          []string{},

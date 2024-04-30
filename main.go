@@ -9,7 +9,7 @@ import (
 )
 
 // @title Mini-Go-Server
-// @version 0.7.3
+// @version 0.8.2
 // @description API Server for my github project
 
 func main() {

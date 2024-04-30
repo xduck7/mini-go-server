@@ -60,47 +60,10 @@ mingw32-make build-bin
 
 * [Gin](https://github.com/gin-gonic/gin/) - Web Framework
 * [Swagger](https://github.com/swaggo/swag) - Swagger UI
-
+* [Gorm](https://gorm.io/) - Gorm.io
 ---
 
 
-## Endpoints
-#### [![](https://img.shields.io/badge/-GET-mediumgreen?style=flat&logo=GET&logoColor=white)]()  /api/v1/invention - return all objects
-#### [![](https://img.shields.io/badge/-GET-mediumgreen?style=flat&logo=GET&logoColor=white)]()  /api/v1/invention/:id - return object by ID
-#### [![](https://img.shields.io/badge/-POST-orange?style=flat&logo=GET&logoColor=white)]()  /api/v1/invention/ - add object
-
----
-## JSON Example with Postman
- [![](https://img.shields.io/badge/-POST-orange?style=flat&logo=GET&logoColor=white)]() ```/api/v1/invention/```
- 
- Body
-```
-{
-    "id": "{{randId}}",
-    "title": "Test",
-    "date": "{{currentDate}}",
-    "description": "Test",
-    "inventor": {
-        "firstname": "Test",
-        "lastname": "Test",
-        "age": 43,
-        "email": "test@mail.com"
-    }
-}
-```
-Pre-request Script
-```
-let currentDate = new Date().toISOString();
-pm.environment.set("currentDate", currentDate);
-
-function generateID() {
-    return Math.floor(Math.random() * (1000)) + 1;
-}
-
-let randId = generateID().toString();
-pm.environment.set("randId", randId);
-
-```
 ## View
 
 * ### `````/menu````` - menu for adding
@@ -113,7 +76,7 @@ pm.environment.set("randId", randId);
 ![alt text](https://i.imgur.com/hp3oyVL.png)
 
 * ### `````/swagger/index.html````` - Swagger UI
-
+![alt text](https://i.imgur.com/cK8hsr8.png)
 
 
 ## License
