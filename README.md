@@ -68,6 +68,7 @@ mingw32-make build-bin
 #### [![](https://img.shields.io/badge/-GET-mediumgreen?style=flat&logo=GET&logoColor=white)]()  /api/v1/invention - return all objects
 #### [![](https://img.shields.io/badge/-GET-mediumgreen?style=flat&logo=GET&logoColor=white)]()  /api/v1/invention/:id - return object by ID
 #### [![](https://img.shields.io/badge/-POST-orange?style=flat&logo=GET&logoColor=white)]()  /api/v1/invention/ - add object
+#### [![](https://img.shields.io/badge/-Swagger-mediumgreen?style=flat&logo=Swagger&logoColor=white)]()  /swagger/index.html
 
 ---
 ## JSON Example with Postman
@@ -113,6 +114,8 @@ pm.environment.set("randId", randId);
 ![alt text](https://i.imgur.com/hp3oyVL.png)
 
 * ### `````/swagger/index.html````` - Swagger UI
+![alt text](https://i.imgur.com/tPxCqx8.png)
+
 
 
 
