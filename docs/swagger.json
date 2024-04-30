@@ -1,0 +1,11 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "API Server for my github project",
+        "title": "Mini-Go-Server",
+        "contact": {},
+        "version": "0.7.0"
+    },
+    "basePath": "/",
+    "paths": {}
+}

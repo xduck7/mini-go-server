@@ -16,7 +16,7 @@ import (
 
 func main() {
 	var portFlag string
-	flag.StringVar(&portFlag, "port", "8080", "use -port for setting port")
+	flag.StringVar(&portFlag, "port", "8080", "use -port= for setting port")
 	flag.Parse()
 
 	port := os.Getenv("PORT")
@@ -25,5 +25,5 @@ func main() {
 	}
 
 	docs.SwaggerInfo.Host = fmt.Sprintf("localhost:%s", port)
-	app.Run(port) // Убедитесь, что перед портом стоит двоеточие
+	app.Run(port)
 }

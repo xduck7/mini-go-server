@@ -15,8 +15,23 @@ cd ./mini-go-server
 ```
 
 ```bash
+go install github.com/swaggo/swag/cmd/swag@latest
+```
+
+```bash
+swag init -g cmd/app/main.go
+```
+
+```bash
 go mod tidy
 ```
+
+```bash
+go run ./cmd/app/main.go -port=8080
+```
+
+
+
 ---
 ## Usage
 

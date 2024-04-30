@@ -1,0 +1,14 @@
+basePath: /
+info:
+  contact: {}
+  description: API Server for my github project
+  title: Mini-Go-Server
+  version: 0.7.0
+paths:
+  /url:
+    get:
+      description: New endpoint
+      responses:
+        200:
+          description: New response {}
+swagger: "2.0"
