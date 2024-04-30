@@ -27,7 +27,7 @@ go mod tidy
 ```
 
 ```bash
-go run ./cmd/app/main.go -port=8080
+go run main.go -port=8080
 ```
 
 
