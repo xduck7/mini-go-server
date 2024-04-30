@@ -9,10 +9,8 @@ import (
 )
 
 // @title Mini-Go-Server
-// @version 0.7.0
+// @version 0.7.3
 // @description API Server for my github project
-
-// @basepath /
 
 func main() {
 	var portFlag string
