@@ -9,6 +9,7 @@ import (
 	"github.com/xduck7/mini-go-server/internal/service"
 	"github.com/xduck7/mini-go-server/internal/validators"
 	"net/http"
+	"strconv"
 )
 
 var validate *validator.Validate
@@ -16,6 +17,8 @@ var validate *validator.Validate
 // InventionController представляет интерфейс для управления изобретениями.
 type InventionController interface {
 	Add(ctx *gin.Context) error
+	Update(ctx *gin.Context) error
+	Delete(ctx *gin.Context) error
 	GetAll() ([]entity.Invention, error)
 	GetById(idx int) (entity.Invention, error)
 	ShowAll(ctx *gin.Context)
@@ -37,7 +40,7 @@ func New(service service.InventionService) InventionController {
 	}
 }
 
-// @Summary Add a new invention
+// @Summary Add
 // @Description Add a new invention with the input payload
 // @Tags api/v1
 // @Accept  json
@@ -63,7 +66,7 @@ func (c *controller) Add(ctx *gin.Context) error {
 	return nil
 }
 
-// @Summary Get all inventions
+// @Summary Get
 // @Description Get all inventions
 // @Tags api/v1
 // @Produce  json
@@ -73,7 +76,7 @@ func (c *controller) GetAll() ([]entity.Invention, error) {
 	return c.service.GetAll()
 }
 
-// @Summary Get an invention by id
+// @Summary Get
 // @Description Get an invention by id
 // @Tags api/v1
 // @Produce  json
@@ -82,6 +85,63 @@ func (c *controller) GetAll() ([]entity.Invention, error) {
 // @Router /invention/{id} [get]
 func (c *controller) GetById(idx int) (entity.Invention, error) {
 	return c.service.GetById(idx)
+}
+
+// @Summary Update
+// @Description Update an existing invention with the input payload
+// @Tags api/v1
+// @Accept  json
+// @Produce  json
+// @Param id path string true "ID of the invention to update"
+// @Param invention body entity.Invention true "Invention entity"
+// @Success 200 {object} string "Invention updated successfully"
+// @Router /invention/{id} [put]
+func (c *controller) Update(ctx *gin.Context) error {
+	var invention entity.Invention
+	invention.Date.Format("02-01-2006 15:04:05")
+	err := ctx.ShouldBindJSON(&invention)
+	if err != nil {
+		return err
+	}
+	id, err := strconv.ParseUint(ctx.Param("id"), 10, 0)
+	if err != nil {
+		return err
+	}
+	invention.ID = strconv.FormatUint(id, 10)
+	err = validate.Struct(invention)
+	if err != nil {
+		return err
+	}
+	c.service.Update(invention)
+	return nil
+}
+
+// @Summary Delete
+// @Description Delete an existing invention by ID
+// @Tags api/v1
+// @Accept  json
+// @Produce  json
+// @Param id path string true "ID of the invention to delete"
+// @Success 200 {object} string "Invention deleted successfully"
+// @Router /invention/{id} [delete]
+func (c *controller) Delete(ctx *gin.Context) error {
+	var invention entity.Invention
+	invention.Date.Format("02-01-2006 15:04:05")
+	err := ctx.ShouldBindJSON(&invention)
+	if err != nil {
+		return err
+	}
+	id, err := strconv.ParseUint(ctx.Param("id"), 10, 0)
+	if err != nil {
+		return err
+	}
+	invention.ID = strconv.FormatUint(id, 10)
+	err = validate.Struct(invention)
+	if err != nil {
+		return err
+	}
+	c.service.Delete(invention)
+	return nil
 }
 
 func (c *controller) ShowAll(ctx *gin.Context) {

@@ -7,6 +7,7 @@ import (
 	ginSwagger "github.com/swaggo/gin-swagger"
 	"github.com/xduck7/mini-go-server/internal/controller"
 	"github.com/xduck7/mini-go-server/internal/middleware"
+	"github.com/xduck7/mini-go-server/internal/repository"
 	"github.com/xduck7/mini-go-server/internal/service"
 	"net/http"
 	"os"
@@ -15,13 +16,15 @@ import (
 )
 
 var (
-	inventionService    = service.New()
+	inventionRepo       = repository.NewInventionRepository()
+	inventionService    = service.New(inventionRepo)
 	inventionController = controller.New(inventionService)
 )
 
 func Run(port string) {
 	middleware.SetupLogOutput()
 
+	defer inventionRepo.CloseDB()
 	server := gin.New()
 	server.Use(gin.Recovery(), middleware.Logger(), middleware.BasicAuth())
 	currentDir, err := os.Getwd()
@@ -55,6 +58,24 @@ func Run(port string) {
 				ctx.JSON(404, nil)
 			}
 			ctx.JSON(200, invList)
+		})
+
+		apiRoutes.PUT("/invention/:id", func(ctx *gin.Context) {
+			err := inventionController.Update(ctx)
+			if err != nil {
+				ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			} else {
+				ctx.JSON(http.StatusOK, gin.H{"error": "Data is valid"})
+			}
+		})
+
+		apiRoutes.DELETE("/invention/:id", func(ctx *gin.Context) {
+			err := inventionController.Delete(ctx)
+			if err != nil {
+				ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			} else {
+				ctx.JSON(http.StatusOK, gin.H{"error": "Data is valid"})
+			}
 		})
 
 		apiRoutes.GET("/invention/:id", func(ctx *gin.Context) {
