@@ -7,13 +7,13 @@ import (
 	"gorm.io/gorm"
 )
 
-// "postgres://username:password@localhost:5432/test
+// "postgres://username:password@addr:port/dbname
 const (
 	username = "postgres"
 	password = "postgres"
-	dbname   = "postgres"
-	port     = "5432"
 	addr     = "localhost"
+	port     = "5432"
+	dbname   = "postgres"
 )
 
 type InventionRepository interface {
@@ -55,6 +55,7 @@ func (db *database) CloseDB() {
 	}
 }
 
+// TODO: fix repo methods
 func (db *database) Save(invention entity.Invention) {
 	db.connection.Create(&invention)
 }
