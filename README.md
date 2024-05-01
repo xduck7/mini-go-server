@@ -61,6 +61,7 @@ mingw32-make build-bin
 * [Gin](https://github.com/gin-gonic/gin/) - Web Framework
 * [Swagger](https://github.com/swaggo/swag) - Swagger UI
 * [Gorm](https://gorm.io/) - Gorm.io
+* [JWT](https://github.com/dgrijalva/jwt-go) - JWT-go
 ---
 
 

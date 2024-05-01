@@ -16,9 +16,12 @@ import (
 )
 
 var (
-	inventionRepo       = repository.NewInventionRepository()
-	inventionService    = service.New(inventionRepo)
-	inventionController = controller.New(inventionService)
+	inventionRepo                                  = repository.NewInventionRepository()
+	inventionService                               = service.New(inventionRepo)
+	loginService        service.LoginService       = service.NewLoginService()
+	jwtService          service.JWTService         = service.NewJWTService()
+	loginController     controller.LoginController = controller.NewLoginController(loginService, jwtService)
+	inventionController                            = controller.New(inventionService)
 )
 
 func Run(port string) {
@@ -26,7 +29,7 @@ func Run(port string) {
 
 	defer inventionRepo.CloseDB()
 	server := gin.New()
-	server.Use(gin.Recovery(), middleware.Logger(), middleware.BasicAuth())
+	server.Use(gin.Recovery(), middleware.Logger())
 	currentDir, err := os.Getwd()
 	if err != nil {
 		fmt.Println(err)
@@ -35,7 +38,19 @@ func Run(port string) {
 	server.Static("/css", templatesPath+"/css")
 	server.LoadHTMLGlob(templatesPath + "/*.html")
 
-	apiRoutes := server.Group("/api/v1")
+	// Login Endpoint: Authentication + Token creation
+	server.POST("/login", func(ctx *gin.Context) {
+		token := loginController.Login(ctx)
+		if token != "" {
+			ctx.JSON(http.StatusOK, gin.H{
+				"token": token,
+			})
+		} else {
+			ctx.JSON(http.StatusUnauthorized, nil)
+		}
+	})
+
+	apiRoutes := server.Group("/api/v1", middleware.AuthJWT())
 	{
 		apiRoutes.GET("/health", func(ctx *gin.Context) {
 			ctx.JSON(200, gin.H{
