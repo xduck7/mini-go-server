@@ -71,8 +71,10 @@
         function generateID() {
             return Math.floor(Math.random() * 1000) + 1;
         }
-        JwtToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoieGR1Y2s3IiwiYWRtaW4iOnRydWUsImV4cCI6MTcxNDg1ODQ5NywiaWF0IjoxNzE0NTk5Mjk3LCJpc3MiOiJnaXRodWJAeGR1Y2s3In0.Np13q4FQouXY0jAg3jmx31oWgXhqjUaprwBMX6P0Q1s"
-        // Отправка данных на сервер
+        // Headers{ username:xduck7 password:admin}
+        // BasicAuth {admin:admin}
+        JwtToken = "new JWT token from request /login"
+
         fetch("/api/v1/invention", {
             method: "POST",
             headers: {

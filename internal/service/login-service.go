@@ -1,8 +1,8 @@
 package service
 
 const (
-	authorizedUsername = "xduck7"
-	authorizedPassword = "admin"
+	authorizedUsernameForJWT = "xduck7"
+	authorizedPasswordForJWT = "admin"
 )
 
 type LoginService interface {
@@ -16,8 +16,8 @@ type loginService struct {
 
 func NewLoginService() LoginService {
 	return &loginService{
-		authorizedUsername: authorizedUsername,
-		authorizedPassword: authorizedPassword,
+		authorizedUsername: authorizedUsernameForJWT,
+		authorizedPassword: authorizedPasswordForJWT,
 	}
 }
 
